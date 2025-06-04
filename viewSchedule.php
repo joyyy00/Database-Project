@@ -11,16 +11,9 @@ require_once "config.php";
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
     <style>
-        .wrapper {
-            width: 800px;
-            margin: 0 auto;
-        }
-        .page-header h2 {
-            margin-top: 0;
-        }
-        table tr td:last-child a {
-            margin-right: 15px;
-        }
+        .wrapper { width: 800px; margin: 0 auto; }
+        .page-header h2 { margin-top: 0; }
+        table tr td:last-child a { margin-right: 15px; }
     </style>
     <script>
         $(document).ready(function(){
@@ -35,7 +28,6 @@ require_once "config.php";
             <div class="col-md-12">
                 <div class="page-header clearfix">
                     <h2 class="pull-left">View Class Schedule</h2>
-                    <!-- Add Class button at top, WORK ON LATER -->
                     <a href="addClass.php" class="btn btn-success pull-right">Add Class</a>
                 </div>
 
@@ -62,14 +54,19 @@ if (isset($_SESSION["SID"])) {
     $sql = "SELECT 
                 c.class_id AS ClassID,
                 c.class_name AS ClassName,
-                c.date AS ClassDate,
+                c.start_date AS StartDate,
+                c.end_date AS EndDate,
                 c.time AS ClassTime,
                 c.location AS Location,
-                c.instructor_id AS InstructorID
+                c.instructor_id AS InstructorID,
+                GROUP_CONCAT(d.day_of_week ORDER BY 
+                    FIELD(d.day_of_week, 'M', 'T', 'W', 'R', 'F') SEPARATOR '/') AS Days
             FROM Project_Class AS c
             JOIN Project_Attends AS a ON c.class_id = a.class_id
             JOIN Project_Student AS s ON a.student_id = s.student_id
-            WHERE s.student_id = ?";
+            LEFT JOIN Project_Class_Days AS d ON c.class_id = d.class_id
+            WHERE s.student_id = ?
+            GROUP BY c.class_id";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
         mysqli_stmt_bind_param($stmt, "i", $param_SID);
@@ -82,19 +79,22 @@ if (isset($_SESSION["SID"])) {
             if (mysqli_num_rows($result) > 0) {
                 echo "<table class='table table-bordered table-striped'>";
                 echo "<thead><tr>";
-                echo "<th>Class ID</th><th>Class Name</th><th>Date</th><th>Time</th><th>Location</th><th>Instructor ID</th>";
+                echo "<th>Class ID</th><th>Class Name</th><th>Start Date</th><th>End Date</th><th>Days</th><th>Time</th><th>Location</th><th>Instructor ID</th>";
                 echo "</tr></thead><tbody>";
 
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>";
                     echo "<td>" . htmlspecialchars($row['ClassID']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['ClassName']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['ClassDate']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['StartDate']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['EndDate']) . "</td>";
+                    echo "<td>" . htmlspecialchars($row['Days']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['ClassTime']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['Location']) . "</td>";
                     echo "<td>" . htmlspecialchars($row['InstructorID']) . "</td>";
                     echo "</tr>";
                 }
+
 
                 echo "</tbody></table>";
                 mysqli_free_result($result);
