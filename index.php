@@ -6,7 +6,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Student DB</title>
+    <title>Canvas DB</title>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
@@ -43,7 +43,7 @@
             <div class="row">
                 <div class="col-md-12">
 		    <div class="page-header clearfix">
-		     <h2> Sample Project CS 340 </h2> 
+		     <h2> CS340 Project Mini Canvas Database </h2> 
                        <p> Project should include CRUD operations. In this website you can:
 				<ol> 	<li> CREATE new employess and  dependents </li>
 					<li> RETRIEVE all dependents and prjects for an employee</li>
@@ -59,7 +59,7 @@
                     
                     // Student Database
                     $sql = "SELECT student_id AS SID , f_name, l_name, number_of_classes, email
-							FROM project_student";
+							FROM Project_Student";
                     if($result = mysqli_query($link, $sql)){
                         if(mysqli_num_rows($result) > 0){
                             echo "<table class='table table-bordered table-striped'>";
@@ -84,11 +84,10 @@
 										echo "<td>" . $row['email'] . "</td>";
                                         
                                         echo "<td>";
-                                            echo "<a href='PROJ_CLASSES.php?SID=". $row['SID']."' title='View Class Schedule' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
-                                            echo "<a href='updateStudentDetails.php?Ssn=". $row['Ssn'] ."' title='Update Student Details' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='viewAssignments.php?Ssn=". $row['Ssn'] ."' title='View Assignents' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-                                            echo "<a href='dropClasses.php?Ssn=". $row['Ssn'] ."' title='Drop Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
-											echo "<a href='viewDependents.php?Ssn=". $row['Ssn']."&Lname=".$row['Lname']."' title='View Dependents' data-toggle='tooltip'><span class='glyphicon glyphicon-user'></span></a>";
+                                            echo "<a href='viewSchedule.php?SID=". $row['SID']."' title='View Class Schedule' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
+                                            echo "<a href='viewAssignments.php?SID=". $row['SID'] ."' title='View Assignents' data-toggle='tooltip'><span class='glyphicon glyphicon-book'></span></a>";
+                                            echo "<a href='updateStudentDetails.php?SID=". $row['SID'] ."' title='Update Student Details' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='dropClasses.php?SID=". $row['SID'] ."' title='Drop Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
@@ -102,32 +101,41 @@
                     } else{
                         echo "ERROR: Could not able to execute $sql. <br>" . mysqli_error($link);
                     }
-					echo "<br> <h2> Courses </h2> <br>";
-					
-                    // Select Department Stats
-					// You will need to Create a DEPT_STATS table
-					
-                    $sql2 = "SELECT * FROM COURSE";
+
+                    // Instructor Database
+                    echo "<br> <h2> Instructor Details</h2> <br>";
+                    // Select Intructor 
+                    $sql2 = "SELECT instructor_id AS ID, f_name, l_name, email FROM Project_Instructor";
                     if($result2 = mysqli_query($link, $sql2)){
                         if(mysqli_num_rows($result2) > 0){
                             echo "<div class='col-md-4'>";
 							echo "<table width=30% class='table table-bordered table-striped'>";
                                 echo "<thead>";
                                     echo "<tr>";
-                                        echo "<th width=20%>Course Name</th>";
-                                        echo "<th width = 20%>Course Number</th>";
-                                        echo "<th width = 10%>Credits</th>";
-                                        // echo "<th width = 40%>Department</th>";
-	
+                                        echo "<th width=20%>Instructor ID</th>";
+                                        echo "<th width = 20%>First Name</th>";
+                                        echo "<th width = 10%>Last Name</th>";
+                                        echo "<th width = 10%>Email</th>";
+                                        echo "<th width = 10%>Action<\th>"
+                                    echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
                                 while($row = mysqli_fetch_array($result2)){
                                     echo "<tr>";
-                                        echo "<td>" . $row['Course_name'] . "</td>";
-                                        echo "<td>" . $row['Course_number'] . "</td>";
-                                        echo "<td>" . $row['Credit_hours'] . "</td>";
-                                        // echo "<td>" . $row['Department'] . "</td>";
-               
+                                        echo "<td>" . $row['ID'] . "</td>";
+                                        echo "<td>" . $row['f_name'] . "</td>";
+                                        echo "<td>" . $row['l_name'] . "</td>";
+                                        echo "<td>" . $row['email'] . "</td>";
+
+                                        echo "<td>";
+                                            echo "<a href='viewClasses.php?SID=". $row['SID']."' title='View Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
+                                            // In view classes, show class details such as students, class days, etc
+                                            // update class button to delete or reassign class
+
+                                            echo "<a href='updateInstructorDetails.php?Ssn=". $row['Ssn'] ."' title='Update Instructor Details' data-toggle='tooltip'><span class='glyphicon glyphicon-book'></span></a>";
+                                            echo "<a href='_______.php?Ssn=". $row['Ssn'] ."' title='________' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='_______.php?Ssn=". $row['Ssn'] ."' title='________' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                        echo "</td>";
                                     echo "</tr>";
                                 }
                                 echo "</tbody>";                            
