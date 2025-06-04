@@ -39,7 +39,7 @@ if ($stmt = mysqli_prepare($link, $sql_name)) {
         <div class="row">
             <div class="col-md-12">
                 <div class="page-header clearfix">
-                    <h2 class="pull-left">View Assignments</h2>
+                    <h2 class="pull-left">Assignments</h2>
                 </div>
 
                 <h4>Assignments for <?php echo htmlspecialchars($lname); ?> (SID: <?php echo htmlspecialchars($student_id); ?>)</h4><br>

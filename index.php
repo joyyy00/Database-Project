@@ -54,7 +54,7 @@
                             <li> DELETE students and instructor records</li>
                         </ol>
 		                <h2 class="pull-left">Student Details</h2>
-                        <a href="createStudent.php" class="btn btn-success pull-right">Add New Student</a>
+                        <a href="addStudent.php" class="btn btn-success pull-right">Add New Student</a>
                     </div>
                 <?php
                 // Include config file

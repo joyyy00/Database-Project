@@ -8,13 +8,14 @@ if (!isset($_GET["student_id"]) || empty(trim($_GET["student_id"]))) {
 }
 $student_id = trim($_GET["student_id"]);
 
-// Fetch student's last name
+// Fetch student's name
+$fname = "";
 $lname = "";
-$sql_name = "SELECT l_name FROM Project_Student WHERE student_id = ?";
+$sql_name = "SELECT f_name, l_name FROM Project_Student WHERE student_id = ?";
 if ($stmt = mysqli_prepare($link, $sql_name)) {
     mysqli_stmt_bind_param($stmt, "i", $student_id);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $lname);
+    mysqli_stmt_bind_result($stmt, $fname, $lname);
     mysqli_stmt_fetch($stmt);
     mysqli_stmt_close($stmt);
 }
@@ -23,7 +24,7 @@ if ($stmt = mysqli_prepare($link, $sql_name)) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>View Class Schedule</title>
+    <title>Class Schedule</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
@@ -44,11 +45,11 @@ if ($stmt = mysqli_prepare($link, $sql_name)) {
         <div class="row">
             <div class="col-md-12">
                 <div class="page-header clearfix">
-                    <h2 class="pull-left">View Class Schedule</h2>
+                    <h2 class="pull-left">Class Schedule</h2>
                     <a href="addClass.php?student_id=<?php echo htmlspecialchars($student_id); ?>" class="btn btn-success pull-right">Add Class</a>
                 </div>
 
-                <h4>Class Schedule for <?php echo htmlspecialchars($lname); ?> (SID: <?php echo htmlspecialchars($student_id); ?>)</h4><br>
+                <h4>Class Schedule for <?php echo htmlspecialchars($fname . " " .$lname); ?> (SID: <?php echo htmlspecialchars($student_id); ?>)</h4><br>
 
 <?php
 $sql = "
