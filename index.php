@@ -114,11 +114,11 @@
                         echo "<table width=30% class='table table-bordered table-striped'>";
                             echo "<thead>";
                                 echo "<tr>";
-                                    echo "<th width=20%>Instructor ID</th>";
+                                    echo "<th width = 100%>Instructor ID</th>";
                                     echo "<th width = 20%>First Name</th>";
                                     echo "<th width = 10%>Last Name</th>";
                                     echo "<th width = 10%>Email</th>";
-                                    echo "<th width = 10%>Action<\th>";
+                                    echo "<th width = 30%>Action</th>";
                                 echo "</tr>";
                             echo "</thead>";
                             echo "<tbody>";
@@ -130,13 +130,13 @@
                                     echo "<td>" . $row['email'] . "</td>";
 
                                     echo "<td>";
-                                        echo "<a href='viewClasses.php?student_id=". $row['SID']."' title='View Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
+                                        echo "<a href='viewClasses.php?instructor_id=". $row['ID']."' title='View Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
                                         // In view classes, show class details such as students, class days, etc
                                         // update class button to delete or reassign class
 
-                                        echo "<a href='updateInstructorDetails.php?Ssn=". $row['Ssn'] ."' title='Update Instructor Details' data-toggle='tooltip'><span class='glyphicon glyphicon-book'></span></a>";
-                                        echo "<a href='_______.php?Ssn=". $row['Ssn'] ."' title='________' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                        echo "<a href='_______.php?Ssn=". $row['Ssn'] ."' title='________' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                        echo "<a href='updateInstructorDetails.php?instructor_id=". $row['ID'] ."' title='Update Instructor Details' data-toggle='tooltip'><span class='glyphicon glyphicon-book'></span></a>";
+                                        echo "<a href='PLACEHOLDER.php?instructor_id=". $row['ID'] ."' title='PLACEHOLDER' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                        echo "<a href='PLACEHOLDER.php?instructor_id=". $row['ID'] ."' title='PLACEHOLDER' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                     echo "</td>";
                                 echo "</tr>";
                             }
