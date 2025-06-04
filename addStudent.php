@@ -1,3 +1,9 @@
+<!-- 
+TODO:
+- number of classes function to automatically calculate
+- number_of_classes is set to 0 for new students for now
+-->
+
 <?php
 // Include config file
 require_once "config.php";

@@ -1,3 +1,15 @@
+<!-- 
+TODO:
+Student table
+- instead of drop classes, maybe replace it with delete student (?)
+- Move drop classes to view class schedule action
+
+Instructor table
+- add Instructor button
+- create actions
+-->
+
+
 <?php
 	session_start();
 	//$currentpage="View Employees"; 
