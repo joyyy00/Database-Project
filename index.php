@@ -116,7 +116,7 @@
                                         echo "<th width = 20%>First Name</th>";
                                         echo "<th width = 10%>Last Name</th>";
                                         echo "<th width = 10%>Email</th>";
-                                        echo "<th width = 10%>Action<\th>"
+                                        echo "<th width = 10%>Action<\th>";
                                     echo "</tr>";
                                 echo "</thead>";
                                 echo "<tbody>";
