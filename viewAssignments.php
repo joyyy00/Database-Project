@@ -1,13 +1,23 @@
 <?php
-session_start();
 require_once "config.php";
 
-// Validate student_id from URL
+// Validate student_id
 if (!isset($_GET["student_id"]) || empty(trim($_GET["student_id"]))) {
-    echo "<p>Error: Missing or invalid student ID.</p>";    exit();
+    echo "<p>Error: Missing or invalid student ID.</p>";
+    exit();
 }
-
 $student_id = trim($_GET["student_id"]);
+
+// Get student last name
+$lname = "";
+$sql_name = "SELECT l_name FROM Project_Student WHERE student_id = ?";
+if ($stmt = mysqli_prepare($link, $sql_name)) {
+    mysqli_stmt_bind_param($stmt, "i", $student_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $lname);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,10 +25,25 @@ $student_id = trim($_GET["student_id"]);
     <meta charset="UTF-8">
     <title>View Assignments</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+    <style>
+        .wrapper { width: 800px; margin: 0 auto; }
+        .page-header h2 { margin-top: 0; }
+        table tr td:last-child a { margin-right: 15px; }
+    </style>
 </head>
 <body>
-<div class="container">
-    <h2>Assignments for Student ID: <?php echo htmlspecialchars($student_id); ?></h2>
+<div class="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-header clearfix">
+                    <h2 class="pull-left">View Assignments</h2>
+                </div>
+
+                <h4>Assignments for <?php echo htmlspecialchars($lname); ?> (SID: <?php echo htmlspecialchars($student_id); ?>)</h4><br>
+
 <?php
 $sql = "
     SELECT 
@@ -34,13 +59,19 @@ $sql = "
 ";
 
 if ($stmt = mysqli_prepare($link, $sql)) {
-    mysqli_stmt_bind_param($stmt, "s", $student_id);
+    mysqli_stmt_bind_param($stmt, "i", $student_id);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
 
     if (mysqli_num_rows($result) > 0) {
         echo "<table class='table table-bordered table-striped'>";
-        echo "<tr><th>Class</th><th>Assignment ID</th><th>Due Date</th><th>Due Time</th><th>Notes</th></tr>";
+        echo "<thead><tr>
+                <th>Class</th>
+                <th>Assignment ID</th>
+                <th>Due Date</th>
+                <th>Due Time</th>
+                <th>Notes</th>
+              </tr></thead><tbody>";
         while ($row = mysqli_fetch_assoc($result)) {
             echo "<tr>";
             echo "<td>" . htmlspecialchars($row["class_name"]) . "</td>";
@@ -50,19 +81,21 @@ if ($stmt = mysqli_prepare($link, $sql)) {
             echo "<td>" . htmlspecialchars($row["notes"]) . "</td>";
             echo "</tr>";
         }
-        echo "</table>";
+        echo "</tbody></table>";
     } else {
-        echo "<p>No assignments found for this student.</p>";
+        echo "<p class='lead'><em>No assignments found for this student.</em></p>";
     }
 
     mysqli_stmt_close($stmt);
 } else {
-    echo "<p>SQL Error: " . mysqli_error($link) . "</p>";
+    echo "<p>Error: " . mysqli_error($link) . "</p>";
 }
-
 mysqli_close($link);
 ?>
-    <a href="index.php" class="btn btn-primary">Back</a>
+<p><a href="index.php" class="btn btn-primary">Back</a></p>
+
+</div>
+</div>        
 </div>
 </body>
 </html>

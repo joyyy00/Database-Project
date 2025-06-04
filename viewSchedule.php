@@ -1,6 +1,23 @@
 <?php
-session_start();
 require_once "config.php";
+
+// Validate student_id
+if (!isset($_GET["student_id"]) || empty(trim($_GET["student_id"]))) {
+    echo "<p>Error: Missing or invalid student ID.</p>";
+    exit();
+}
+$student_id = trim($_GET["student_id"]);
+
+// Fetch student's last name
+$lname = "";
+$sql_name = "SELECT l_name FROM Project_Student WHERE student_id = ?";
+if ($stmt = mysqli_prepare($link, $sql_name)) {
+    mysqli_stmt_bind_param($stmt, "i", $student_id);
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_result($stmt, $lname);
+    mysqli_stmt_fetch($stmt);
+    mysqli_stmt_close($stmt);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,92 +45,72 @@ require_once "config.php";
             <div class="col-md-12">
                 <div class="page-header clearfix">
                     <h2 class="pull-left">View Class Schedule</h2>
-                    <a href="addClass.php" class="btn btn-success pull-right">Add Class</a>
+                    <a href="addClass.php?student_id=<?php echo htmlspecialchars($student_id); ?>" class="btn btn-success pull-right">Add Class</a>
                 </div>
 
+                <h4>Class Schedule for <?php echo htmlspecialchars($lname); ?> (SID: <?php echo htmlspecialchars($student_id); ?>)</h4><br>
+
 <?php
-if (isset($_GET["SID"]) && !empty(trim($_GET["SID"]))) {
-    $_SESSION["SID"] = $_GET["SID"];
-}
+$sql = "
+    SELECT 
+        c.class_id,
+        c.class_name,
+        c.start_date,
+        c.end_date,
+        c.time,
+        c.location,
+        c.instructor_id,
+        GROUP_CONCAT(d.day_of_week ORDER BY 
+            FIELD(d.day_of_week, 'M', 'T', 'W', 'R', 'F') SEPARATOR '/') AS days
+    FROM Project_Class c
+    JOIN Project_Attends a ON c.class_id = a.class_id
+    LEFT JOIN Project_Class_Days d ON c.class_id = d.class_id
+    WHERE a.student_id = ?
+    GROUP BY c.class_id
+";
 
-if (isset($_SESSION["SID"])) {
-    $param_SID = $_SESSION["SID"];
-    $Lname = "";
+if ($stmt = mysqli_prepare($link, $sql)) {
+    mysqli_stmt_bind_param($stmt, "i", $student_id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
-    // Get student's last name
-    $student_sql = "SELECT l_name FROM Project_Student WHERE student_id = ?";
-    if ($student_stmt = mysqli_prepare($link, $student_sql)) {
-        mysqli_stmt_bind_param($student_stmt, "i", $param_SID);
-        mysqli_stmt_execute($student_stmt);
-        mysqli_stmt_bind_result($student_stmt, $Lname);
-        mysqli_stmt_fetch($student_stmt);
-        mysqli_stmt_close($student_stmt);
-    }
-
-    // Get schedule
-    $sql = "SELECT 
-                c.class_id AS ClassID,
-                c.class_name AS ClassName,
-                c.start_date AS StartDate,
-                c.end_date AS EndDate,
-                c.time AS ClassTime,
-                c.location AS Location,
-                c.instructor_id AS InstructorID,
-                GROUP_CONCAT(d.day_of_week ORDER BY 
-                    FIELD(d.day_of_week, 'M', 'T', 'W', 'R', 'F') SEPARATOR '/') AS Days
-            FROM Project_Class AS c
-            JOIN Project_Attends AS a ON c.class_id = a.class_id
-            JOIN Project_Student AS s ON a.student_id = s.student_id
-            LEFT JOIN Project_Class_Days AS d ON c.class_id = d.class_id
-            WHERE s.student_id = ?
-            GROUP BY c.class_id";
-
-    if ($stmt = mysqli_prepare($link, $sql)) {
-        mysqli_stmt_bind_param($stmt, "i", $param_SID);
-
-        if (mysqli_stmt_execute($stmt)) {
-            $result = mysqli_stmt_get_result($stmt);
-
-            echo "<h4>Class Schedule for $Lname (SID: $param_SID)</h4><br>";
-
-            if (mysqli_num_rows($result) > 0) {
-                echo "<table class='table table-bordered table-striped'>";
-                echo "<thead><tr>";
-                echo "<th>Class ID</th><th>Class Name</th><th>Start Date</th><th>End Date</th><th>Days</th><th>Time</th><th>Location</th><th>Instructor ID</th>";
-                echo "</tr></thead><tbody>";
-
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>";
-                    echo "<td>" . htmlspecialchars($row['ClassID']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['ClassName']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['StartDate']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['EndDate']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['Days']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['ClassTime']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['Location']) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['InstructorID']) . "</td>";
-                    echo "</tr>";
-                }
-
-
-                echo "</tbody></table>";
-                mysqli_free_result($result);
-            } else {
-                echo "<p class='lead'><em>No classes found for this student.</em></p>";
-            }
-        } else {
-            echo "Something went wrong. Please try again later.";
+    if (mysqli_num_rows($result) > 0) {
+        echo "<table class='table table-bordered table-striped'>";
+        echo "<thead><tr>
+                <th>Class ID</th>
+                <th>Class Name</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Days</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th>Instructor ID</th>
+              </tr></thead><tbody>";
+        while ($row = mysqli_fetch_assoc($result)) {
+            echo "<tr>";
+            echo "<td>" . htmlspecialchars($row["class_id"]) . "</td>";
+            echo "<td>" . htmlspecialchars($row["class_name"]) . "</td>";
+            echo "<td>" . htmlspecialchars($row["start_date"]) . "</td>";
+            echo "<td>" . htmlspecialchars($row["end_date"]) . "</td>";
+            echo "<td>" . htmlspecialchars($row["days"]) . "</td>";
+            echo "<td>" . htmlspecialchars($row["time"]) . "</td>";
+            echo "<td>" . htmlspecialchars($row["location"]) . "</td>";
+            echo "<td>" . htmlspecialchars($row["instructor_id"]) . "</td>";
+            echo "</tr>";
         }
-        mysqli_stmt_close($stmt);
+        echo "</tbody></table>";
+    } else {
+        echo "<p class='lead'><em>No class schedule found for this student.</em></p>";
     }
 
-    mysqli_close($link);
+    mysqli_stmt_close($stmt);
 } else {
-    header("location: error.php");
-    exit();
+    echo "<p>Error: " . mysqli_error($link) . "</p>";
 }
+mysqli_close($link);
 ?>
 <p><a href="index.php" class="btn btn-primary">Back</a></p>
+
 </div>
 </div>        
 </div>
