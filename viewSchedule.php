@@ -43,14 +43,25 @@ require_once "config.php";
 if (isset($_GET["SID"]) && !empty(trim($_GET["SID"]))) {
     $_SESSION["SID"] = $_GET["SID"];
 }
-if (isset($_GET["l_name"]) && !empty(trim($_GET["l_name"]))) {
-    $_SESSION["l_name"] = $_GET["l_name"];
-}
 
 if (isset($_SESSION["SID"])) {
+    $param_SID = $_SESSION["SID"];
+    $Lname = "";
+
+    // Get student's last name
+    $student_sql = "SELECT l_name FROM Project_Student WHERE student_id = ?";
+    if ($student_stmt = mysqli_prepare($link, $student_sql)) {
+        mysqli_stmt_bind_param($student_stmt, "i", $param_SID);
+        mysqli_stmt_execute($student_stmt);
+        mysqli_stmt_bind_result($student_stmt, $Lname);
+        mysqli_stmt_fetch($student_stmt);
+        mysqli_stmt_close($student_stmt);
+    }
+
+    // Get schedule
     $sql = "SELECT 
                 c.class_id AS ClassID,
-                c.className AS ClassName,
+                c.class_name AS ClassName,
                 c.date AS ClassDate,
                 c.time AS ClassTime,
                 c.location AS Location,
@@ -62,8 +73,6 @@ if (isset($_SESSION["SID"])) {
 
     if ($stmt = mysqli_prepare($link, $sql)) {
         mysqli_stmt_bind_param($stmt, "i", $param_SID);
-        $param_SID = $_SESSION["SID"];
-        $Lname = $_SESSION["l_name"];
 
         if (mysqli_stmt_execute($stmt)) {
             $result = mysqli_stmt_get_result($stmt);
@@ -97,6 +106,7 @@ if (isset($_SESSION["SID"])) {
         }
         mysqli_stmt_close($stmt);
     }
+
     mysqli_close($link);
 } else {
     header("location: error.php");

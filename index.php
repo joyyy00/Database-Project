@@ -84,10 +84,10 @@
 										echo "<td>" . $row['email'] . "</td>";
                                         
                                         echo "<td>";
-                                            echo "<a href='viewSchedule.php?SID=". $row['SID']."' title='View Class Schedule' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
-                                            echo "<a href='viewAssignments.php?SID=". $row['SID'] ."' title='View Assignents' data-toggle='tooltip'><span class='glyphicon glyphicon-book'></span></a>";
-                                            echo "<a href='updateStudentDetails.php?SID=". $row['SID'] ."' title='Update Student Details' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                            echo "<a href='dropClasses.php?SID=". $row['SID'] ."' title='Drop Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                            echo "<a href='viewSchedule.php?student_id=". $row['SID']."' title='View Class Schedule' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
+                                            echo "<a href='viewAssignments.php?student_id=". $row['SID'] ."' title='View Assignents' data-toggle='tooltip'><span class='glyphicon glyphicon-book'></span></a>";
+                                            echo "<a href='updateStudentDetails.php?student_id=". $row['SID'] ."' title='Update Student Details' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
+                                            echo "<a href='dropClasses.php?student_id=". $row['SID'] ."' title='Drop Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                         echo "</td>";
                                     echo "</tr>";
                                 }
@@ -128,7 +128,7 @@
                                         echo "<td>" . $row['email'] . "</td>";
 
                                         echo "<td>";
-                                            echo "<a href='viewClasses.php?SID=". $row['SID']."' title='View Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
+                                            echo "<a href='viewClasses.php?student_id=". $row['SID']."' title='View Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
                                             // In view classes, show class details such as students, class days, etc
                                             // update class button to delete or reassign class
 
