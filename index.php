@@ -134,18 +134,17 @@ Instructor table
                 $sql2 = "SELECT instructor_id AS ID, f_name, l_name, email FROM Project_Instructor";
                 if($result2 = mysqli_query($link, $sql2)){
                     if(mysqli_num_rows($result2) > 0){
-                        echo "<div class='col-md-4'>";
-                        echo "<table width=30% class='table table-bordered table-striped'>";
-                            echo "<thead>";
-                                echo "<tr>";
-                                    echo "<th width = 100%>Instructor ID</th>";
-                                    echo "<th width = 20%>First Name</th>";
-                                    echo "<th width = 10%>Last Name</th>";
-                                    echo "<th width = 10%>Email</th>";
-                                    echo "<th width = 30%>Action</th>";
-                                echo "</tr>";
-                            echo "</thead>";
-                            echo "<tbody>";
+                        echo "<table class='table table-bordered table-striped'>";
+                        echo "<thead>";
+                        echo "<tr>";
+                            echo "<th width = 8%>Instructor ID</th>";
+                            echo "<th width = 10%>First Name</th>";
+                            echo "<th width = 10%>Last Name</th>";
+                            echo "<th width = 10%>Email</th>";
+                            echo "<th width = 8%>Action</th>";
+                        echo "</tr>";
+                        echo "</thead>";
+                        echo "<tbody>";
                             while($row = mysqli_fetch_array($result2)){
                                 echo "<tr>";
                                     echo "<td>" . $row['ID'] . "</td>";

@@ -14,8 +14,8 @@ $ID_err = $Fname_err = $Lname_err = $email_err= "" ;
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    // Validate SID
-    $ID = trim($_POST["SID"]);
+    // Validate ID
+    $ID = trim($_POST["ID"]);
     if(empty($ID)){
         $ID_err = "Please enter an ID (Instructor ID).";     
     } elseif(!ctype_digit($ID)){
@@ -54,17 +54,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            $numClasses = 0; // placeholder for now... need to implement function
-            mysqli_stmt_bind_param($stmt, "issis", $SID, $Fname, $Lname, $numClasses, $email);
+            mysqli_stmt_bind_param($stmt, "isss", $ID, $Fname, $Lname, $email);
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records created successfully. Redirect to landing page
-				    header("location: index.php");
-					exit();
+                header("location: index.php");
+                exit();
             } else{
                 echo "<div class='alert alert-danger'>Error: Instructor ID may already exist.</div>";
-				$SID_err = "Enter a unique SID.";
+				$ID_err = "Enter a unique ID.";
             }
         }
          
