@@ -1,5 +1,7 @@
 <!-- 
 TODO:
+- Set up CSS file
+
 Student table
 - instead of drop classes, maybe replace it with delete student (?)
 - Move drop classes to view class schedule action
@@ -65,14 +67,18 @@ Instructor table
                             <li> UPDATE student and instructor records</li>
                             <li> DELETE students and instructor records</li>
                         </ol>
-		                <h2 class="pull-left">Student Details</h2>
-                        <a href="addStudent.php" class="btn btn-success pull-right">Add New Student</a>
                     </div>
+                
+                <!-- Student Database -->
+                <div class="student-header clearfix"> 
+                    <h2 class="pull-left">Student Details</h2>
+                    <a href="addStudent.php" class="btn btn-success pull-right">Add New Student</a>
+                </div>
+
                 <?php
                 // Include config file
-                require_once "config.php";
+                // require_once "config.php";
                 
-                // Student Database
                 $sql = "SELECT student_id AS SID , f_name, l_name, number_of_classes, email
                         FROM Project_Student";
                 if($result = mysqli_query($link, $sql)){
@@ -115,9 +121,15 @@ Instructor table
                 } else{
                     echo "ERROR: Could not able to execute $sql. <br>" . mysqli_error($link);
                 }
+                ?>
 
-                // Instructor Database
-                echo "<br> <h2> Instructor Details</h2> <br>";
+                 <!-- Instructor Database -->
+                <div class="instructor-header clearfix">
+                    <h2 class="pull-left">Instructor Details</h2>
+                    <a href="addInstructor.php" class="btn btn-success pull-right">Add New Instructor</a>
+                </div>
+
+                <?php
                 // Select Intructor 
                 $sql2 = "SELECT instructor_id AS ID, f_name, l_name, email FROM Project_Instructor";
                 if($result2 = mysqli_query($link, $sql2)){
@@ -146,9 +158,9 @@ Instructor table
                                         // In view classes, show class details such as students, class days, etc
                                         // update class button to delete or reassign class
 
-                                        echo "<a href='updateInstructorDetails.php?instructor_id=". $row['ID'] ."' title='Update Instructor Details' data-toggle='tooltip'><span class='glyphicon glyphicon-book'></span></a>";
+                                        echo "<a href='updateInstructorDetails.php?instructor_id=". $row['ID'] ."' title='Update Instructor Details' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
                                         echo "<a href='PLACEHOLDER.php?instructor_id=". $row['ID'] ."' title='PLACEHOLDER' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                        echo "<a href='PLACEHOLDER.php?instructor_id=". $row['ID'] ."' title='PLACEHOLDER' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                        echo ",<a href='deleteInstructor.php?instructor_id=". $row['ID'] ."' title='Delete Instructor' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
                                     echo "</td>";
                                 echo "</tr>";
                             }

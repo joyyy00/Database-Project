@@ -1,7 +1,7 @@
 <!-- 
 TODO:
-- number of classes function to automatically calculate
-- number_of_classes is set to 0 for new students for now
+- 
+-
 -->
 
 <?php
@@ -9,17 +9,17 @@ TODO:
 require_once "config.php";
  
 // Define variables and initialize with empty values
-$SID = $Fname = $Lname = $numClasses = $email = "";
-$SID_err = $Fname_err = $Lname_err = $numClasses_err = $email_err= "" ;
+$ID = $Fname = $Lname = $email = "";
+$ID_err = $Fname_err = $Lname_err = $email_err= "" ;
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate SID
-    $SID = trim($_POST["SID"]);
-    if(empty($SID)){
-        $SID_err = "Please enter a SID (student ID).";     
-    } elseif(!ctype_digit($SID)){
-        $SID_err = "Please enter a positive integer value of SID.";
+    $ID = trim($_POST["SID"]);
+    if(empty($ID)){
+        $ID_err = "Please enter an ID (Instructor ID).";     
+    } elseif(!ctype_digit($ID)){
+        $ID_err = "Please enter a positive integer value of ID.";
     } 
 
     // Validate First name
@@ -46,11 +46,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
     
     // Check input errors before inserting in database
-    if(empty($SID_err) && empty($Fname_err) && empty($Lname_err) 
+    if(empty($ID_err) && empty($Fname_err) && empty($Lname_err) 
 				&& empty($email_err)){
         // Prepare an insert statement
-        $sql = "INSERT INTO Project_Student (student_id, f_name, l_name, number_of_classes, email) 
-		        VALUES (?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO Project_Instructor (instructor_id, f_name, l_name, email) 
+		        VALUES (?, ?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 				    header("location: index.php");
 					exit();
             } else{
-                echo "<div class='alert alert-danger'>Error: Student ID may already exist.</div>";
+                echo "<div class='alert alert-danger'>Error: Instructor ID may already exist.</div>";
 				$SID_err = "Enter a unique SID.";
             }
         }
@@ -81,7 +81,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add New Student</title>
+    <title>Add New Instructor</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         .wrapper{
@@ -96,14 +96,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="row">
                 <div class="col-md-12">
                     <div class="page-header">
-                        <h2>New Student Form</h2>
+                        <h2>New Instructor Form</h2>
                     </div>
-                    <p>Please fill this form and submit to add a student to the database.</p>
+                    <p>Please fill this form and submit to add an instructor to the database.</p>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-						<div class="form-group <?php echo (!empty($SID_err)) ? 'has-error' : ''; ?>">
-                            <label>SID</label>
-                            <input type="text" name="SID" class="form-control" value="<?php echo $SID; ?>">
-                            <span class="help-block"><?php echo $SID_err;?></span>
+						<div class="form-group <?php echo (!empty($ID_err)) ? 'has-error' : ''; ?>">
+                            <label>ID</label>
+                            <input type="text" name="ID" class="form-control" value="<?php echo $ID; ?>">
+                            <span class="help-block"><?php echo $ID_err;?></span>
                         </div>
 						<div class="form-group <?php echo (!empty($Fname_err)) ? 'has-error' : ''; ?>">
                             <label>First Name</label>
