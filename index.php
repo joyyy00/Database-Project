@@ -1,6 +1,7 @@
 <!-- 
 TODO:
 - Set up CSS file
+- Change UI
 
 Student table
 - Moved drop classes to viewSchedule
