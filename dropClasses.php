@@ -31,8 +31,8 @@ if ($stmt_name = mysqli_prepare($link, $sql_name)) {
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['class_id'])) {
     $class_id = $_POST['class_id'];
 
-    // Prepare an insert statement
-    $sql = "INSERT INTO Project_Attends (student_id, class_id) VALUES (?, ?)";
+    // Prepare a delete statement
+    $sql = "DELETE FROM Project_Attends WHERE student_id = ? AND class_id = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
         mysqli_stmt_bind_param($stmt, "ii", $param_student_id, $param_class_id);
@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['class_id'])) {
         // Attempt to execute the statement
         if (mysqli_stmt_execute($stmt)) {
             // Redirect back to the same page with a success message
-            header("Location: addClass.php?student_id=$student_id&message=Class added successfully");
+            header("Location: dropClasses.php?student_id=$student_id&message=Class dropped successfully");
             exit();
         } else {
             echo "Oops! Something went wrong. Please try again later.";
@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['class_id'])) {
     }
 }
 
-// Fetch classes the student is not enrolled in
+// Fetch classes the student is enrolled in
 $sql = "
     SELECT 
         c.class_id,
@@ -67,9 +67,9 @@ $sql = "
         GROUP_CONCAT(d.day_of_week ORDER BY 
             FIELD(d.day_of_week, 'M', 'T', 'W', 'R', 'F') SEPARATOR '/') AS days
     FROM Project_Class c
-    LEFT JOIN Project_Attends a ON c.class_id = a.class_id AND a.student_id = ?
+    JOIN Project_Attends a ON c.class_id = a.class_id
     LEFT JOIN Project_Class_Days d ON c.class_id = d.class_id
-    WHERE a.class_id IS NULL
+    WHERE a.student_id = ?
     GROUP BY c.class_id
 ";
 $classes = [];
@@ -98,7 +98,7 @@ mysqli_close($link);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Classes</title>
+    <title>Drop Classes</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
@@ -119,11 +119,11 @@ mysqli_close($link);
         <div class="row">
             <div class="col-md-12">
                 <div class="page-header clearfix">
-                    <h2 class="pull-left">Add Classes</h2>
+                    <h2 class="pull-left">Drop Classes</h2>
                     <a href="viewSchedule.php?student_id=<?php echo htmlspecialchars($student_id); ?>" class="btn btn-primary pull-right">Back</a>
                 </div>
 
-                <h4>Available Classes for <?php echo htmlspecialchars($student_name); ?> (SID: <?php echo htmlspecialchars($student_id); ?>)</h4><br>
+                <h4>Class Schedule for <?php echo htmlspecialchars($student_name); ?> (SID: <?php echo htmlspecialchars($student_id); ?>)</h4><br>
 
                 <?php
                 // Display success message if available
@@ -161,7 +161,7 @@ mysqli_close($link);
                                     <td>
                                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . "?student_id=" . htmlspecialchars($student_id); ?>" method="post" style="display:inline;">
                                             <input type="hidden" name="class_id" value="<?php echo htmlspecialchars($class['class_id']); ?>">
-                                            <button type="submit" class="btn btn-success btn-sm">Add</button>
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to drop this class?');">Drop</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -169,7 +169,7 @@ mysqli_close($link);
                         </tbody>
                     </table>
                 <?php else: ?>
-                    <p class="lead"><em>No available classes to add for this student.</em></p>
+                    <p class="lead"><em>No classes found for this student.</em></p>
                 <?php endif; ?>
             </div>
         </div>        
