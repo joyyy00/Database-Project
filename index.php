@@ -1,7 +1,6 @@
 <!-- 
 TODO:
-- Set up CSS file
-- Change UI
+- make css files for other files like class statistics, add forms, etc.
 
 Student table
 - Moved drop classes to viewSchedule
@@ -19,14 +18,22 @@ Student table
     <meta charset="UTF-8">
     <title>Canvas DB</title>
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="mainPage.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();   
+        });
+    </script>   
     
-	<style type="text/css">
+	<!-- <style type="text/css">
         .wrapper{
             width: 70%;
             margin:0 auto;
@@ -41,140 +48,117 @@ Student table
             $('[data-toggle="tooltip"]').tooltip();   
         });
 		 $('.selectpicker').selectpicker();
-    </script>
+    </script> -->
 </head>
 
 <body>
-    <?php
-        // Include config file
-        require_once "config.php";
-        //include "header.php";
-	?>
+    <?php require_once "config.php"; ?>
+
     <div class="wrapper">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-		            <div class="page-header clearfix">
-		                <h2> CS340 Project Mini Canvas Database </h2> 
-                        <p> Project should include CRUD operations. In this website you can:
-                        <ol> 	
-                            <li> CREATE new students, instructors, assignments and classes</li>
-                            <li> RETRIEVE all classes, and assignments for a student & classes for an instructor</li>
-                            <li> UPDATE student and instructor records</li>
-                            <li> DELETE students and instructor records</li>
-                        </ol>
-                    </div>
-                
-                <!-- Class Statistics Button -->
-                <a href="classStats.php" class="btn btn-info" style="margin: 10px 0;">View Class Statistics</a>
-                
-                <!-- Student Database -->
+            <div class="page-header">
+                <h2>CS340 Project: Mini Canvas Database</h2>
+                <p>This project demonstrates CRUD operations:</p>
+                <ol>
+                    <li>CREATE students, instructors, assignments, and classes</li>
+                    <li>RETRIEVE class & assignment info for students and instructors</li>
+                    <li>UPDATE student and instructor records</li>
+                    <li>DELETE student and instructor records</li>
+                </ol>
+            </div>
+
+            <!-- Class Statistics Button -->
+            <a href="classStats.php" class="btn btn-info btn-margin">View Class Statistics</a>
+
+            <!-- Student Database -->
+            <div class="section-card">
                 <div class="student-header clearfix"> 
                     <h2 class="pull-left">Student Details</h2>
                     <a href="addStudent.php" class="btn btn-success pull-right">Add New Student</a>
                 </div>
 
                 <?php
-                // Include config file
-                // require_once "config.php";
-                
-                $sql = "SELECT student_id AS SID , f_name, l_name, number_of_classes, email
-                        FROM Project_Student";
-                if($result = mysqli_query($link, $sql)){
-                    if(mysqli_num_rows($result) > 0){
+                $sql = "SELECT student_id AS SID , f_name, l_name, number_of_classes, email FROM Project_Student";
+                if ($result = mysqli_query($link, $sql)) {
+                    if (mysqli_num_rows($result) > 0) {
                         echo "<table class='table table-bordered table-striped'>";
-                        echo "<thead>";
-                        echo "<tr>";
-                            echo "<th width=8%>SID</th>";
-                            echo "<th width=10%>First Name</th>";
-                            echo "<th width=10%>Last Name</th>";
-                            echo "<th width=10%>Number of Classes</th>";
-                            echo "<th width=10%>Email</th>";
-                            echo "<th width=10%>Action</th>";
-                        echo "</tr>";
-                        echo "</thead>";
-                        echo "<tbody>";
-                            while($row = mysqli_fetch_array($result)){
-                                echo "<tr>";
-                                    echo "<td>" . $row['SID'] . "</td>";
-                                    echo "<td>" . $row['f_name'] . "</td>";
-                                    echo "<td>" . $row['l_name'] . "</td>";
-                                    echo "<td>" . $row['number_of_classes'] . "</td>";									
-                                    echo "<td>" . $row['email'] . "</td>";
-                                    
-                                    echo "<td>";
-                                        echo "<a href='viewSchedule.php?student_id=". $row['SID']."' title='View Class Schedule' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
-                                        echo "<a href='viewAssignments.php?student_id=". $row['SID'] ."' title='View Assignents' data-toggle='tooltip'><span class='glyphicon glyphicon-book'></span></a>";
-                                        echo "<a href='updateStudentDetails.php?student_id=". $row['SID'] ."' title='Update Student Details' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                        echo "<a href='deleteStudent.php?student_id=". $row['SID'] ."' title='Delete Student' data-toggle='tooltip'><span class='glyphicon glyphicon-remove'></span></a>";
-                                    echo "</td>";
-                                echo "</tr>";
-                            }
-                            echo "</tbody>";                            
-                        echo "</table>";
-                        // Free result set
+                        echo "<thead><tr>
+                                <th>SID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Number of Classes</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                              </tr></thead><tbody>";
+                        while ($row = mysqli_fetch_array($result)) {
+                            echo "<tr>
+                                    <td>{$row['SID']}</td>
+                                    <td>{$row['f_name']}</td>
+                                    <td>{$row['l_name']}</td>
+                                    <td>{$row['number_of_classes']}</td>
+                                    <td>{$row['email']}</td>
+                                    <td>
+                                        <a href='viewSchedule.php?student_id={$row['SID']}' title='View Schedule' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>
+                                        <a href='viewAssignments.php?student_id={$row['SID']}' title='View Assignments' data-toggle='tooltip'><span class='glyphicon glyphicon-book'></span></a>
+                                        <a href='updateStudentDetails.php?student_id={$row['SID']}' title='Edit' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
+                                        <a href='deleteStudent.php?student_id={$row['SID']}' title='Delete' data-toggle='tooltip'><span class='glyphicon glyphicon-remove'></span></a>
+                                    </td>
+                                  </tr>";
+                        }
+                        echo "</tbody></table>";
                         mysqli_free_result($result);
-                    } else{
-                        echo "<p class='lead'><em>No records were found.</em></p>";
+                    } else {
+                        echo "<p class='lead'><em>No student records found.</em></p>";
                     }
-                } else{
-                    echo "ERROR: Could not able to execute $sql. <br>" . mysqli_error($link);
+                } else {
+                    echo "ERROR: Could not execute $sql. " . mysqli_error($link);
                 }
                 ?>
+            </div>
 
-                 <!-- Instructor Database -->
+            <!-- Instructor Database -->
+            <div class="section-card">
                 <div class="instructor-header clearfix">
                     <h2 class="pull-left">Instructor Details</h2>
                     <a href="addInstructor.php" class="btn btn-success pull-right">Add New Instructor</a>
                 </div>
 
                 <?php
-                // Select Intructor 
                 $sql2 = "SELECT instructor_id AS ID, f_name, l_name, email FROM Project_Instructor";
-                if($result2 = mysqli_query($link, $sql2)){
-                    if(mysqli_num_rows($result2) > 0){
+                if ($result2 = mysqli_query($link, $sql2)) {
+                    if (mysqli_num_rows($result2) > 0) {
                         echo "<table class='table table-bordered table-striped'>";
-                        echo "<thead>";
-                        echo "<tr>";
-                            echo "<th width = 8%>Instructor ID</th>";
-                            echo "<th width = 10%>First Name</th>";
-                            echo "<th width = 10%>Last Name</th>";
-                            echo "<th width = 10%>Email</th>";
-                            echo "<th width = 8%>Action</th>";
-                        echo "</tr>";
-                        echo "</thead>";
-                        echo "<tbody>";
-                            while($row = mysqli_fetch_array($result2)){
-                                echo "<tr>";
-                                    echo "<td>" . $row['ID'] . "</td>";
-                                    echo "<td>" . $row['f_name'] . "</td>";
-                                    echo "<td>" . $row['l_name'] . "</td>";
-                                    echo "<td>" . $row['email'] . "</td>";
-
-                                    echo "<td>";
-                                        echo "<a href='viewClasses.php?instructor_id=". $row['ID']."' title='View Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
-                                        // In view classes, show class details such as students, class days, etc
-                                        // update class button to delete or reassign class
-                                        echo "<a href='updateInstructorDetails.php?instructor_id=". $row['ID'] ."' title='Update Instructor Details' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                        echo ",<a href='deleteInstructor.php?instructor_id=". $row['ID'] ."' title='Delete Instructor' data-toggle='tooltip'><span class='glyphicon glyphicon-remove'></span></a>";                                    
-                                    echo "</td>";
-                                echo "</tr>";
-                            }
-                            echo "</tbody>";                            
-                        echo "</table>";
-                        // Free result set
+                        echo "<thead><tr>
+                                <th>Instructor ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Action</th>
+                              </tr></thead><tbody>";
+                        while ($row = mysqli_fetch_array($result2)) {
+                            echo "<tr>
+                                    <td>{$row['ID']}</td>
+                                    <td>{$row['f_name']}</td>
+                                    <td>{$row['l_name']}</td>
+                                    <td>{$row['email']}</td>
+                                    <td>
+                                        <a href='viewClasses.php?instructor_id={$row['ID']}' title='View Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>
+                                        <a href='updateInstructorDetails.php?instructor_id={$row['ID']}' title='Edit' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
+                                        <a href='deleteInstructor.php?instructor_id={$row['ID']}' title='Delete' data-toggle='tooltip'><span class='glyphicon glyphicon-remove'></span></a>
+                                    </td>
+                                  </tr>";
+                        }
+                        echo "</tbody></table>";
                         mysqli_free_result($result2);
-                    } else{
-                        echo "<p class='lead'><em>No records were found for Courses.</em></p>";
+                    } else {
+                        echo "<p class='lead'><em>No instructor records found.</em></p>";
                     }
-                } else{
-                    echo "ERROR: Could not able to execute $sql2. <br>" . mysqli_error($link);
+                } else {
+                    echo "ERROR: Could not execute $sql2. " . mysqli_error($link);
                 }
-                
-                // Close connection
+
                 mysqli_close($link);
                 ?>
-                </div>
             </div>
         </div>
     </div>
