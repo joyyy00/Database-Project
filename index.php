@@ -3,18 +3,13 @@ TODO:
 - Set up CSS file
 
 Student table
-- instead of drop classes, maybe replace it with delete student (?)
-- Move drop classes to view class schedule action
-
-Instructor table
-- add Instructor button
-- create actions
+- Moved drop classes to viewSchedule
 -->
 
 
 <?php
 	session_start();
-	//$currentpage="View Employees"; 
+	//$currentpage="View Students & Instructors"; 
 ?>
 
 <!DOCTYPE html>
@@ -107,7 +102,7 @@ Instructor table
                                         echo "<a href='viewSchedule.php?student_id=". $row['SID']."' title='View Class Schedule' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
                                         echo "<a href='viewAssignments.php?student_id=". $row['SID'] ."' title='View Assignents' data-toggle='tooltip'><span class='glyphicon glyphicon-book'></span></a>";
                                         echo "<a href='updateStudentDetails.php?student_id=". $row['SID'] ."' title='Update Student Details' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                        echo "<a href='dropClasses.php?student_id=". $row['SID'] ."' title='Drop Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                        echo "<a href='deleteStudent.php?student_id=". $row['SID'] ."' title='Delete Student' data-toggle='tooltip'><span class='glyphicon glyphicon-remove'></span></a>";
                                     echo "</td>";
                                 echo "</tr>";
                             }
@@ -156,10 +151,8 @@ Instructor table
                                         echo "<a href='viewClasses.php?instructor_id=". $row['ID']."' title='View Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>";
                                         // In view classes, show class details such as students, class days, etc
                                         // update class button to delete or reassign class
-
                                         echo "<a href='updateInstructorDetails.php?instructor_id=". $row['ID'] ."' title='Update Instructor Details' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                        echo "<a href='PLACEHOLDER.php?instructor_id=". $row['ID'] ."' title='PLACEHOLDER' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>";
-                                        echo ",<a href='deleteInstructor.php?instructor_id=". $row['ID'] ."' title='Delete Instructor' data-toggle='tooltip'><span class='glyphicon glyphicon-trash'></span></a>";
+                                        echo ",<a href='deleteInstructor.php?instructor_id=". $row['ID'] ."' title='Delete Instructor' data-toggle='tooltip'><span class='glyphicon glyphicon-remove'></span></a>";                                    
                                     echo "</td>";
                                 echo "</tr>";
                             }
