@@ -142,7 +142,7 @@ Student table
                                     <td>{$row['l_name']}</td>
                                     <td>{$row['email']}</td>
                                     <td>
-                                        <a href='viewClasses.php?instructor_id={$row['ID']}' title='View Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>
+                                        <a href='viewInstructorSchedule.php?instructor_id={$row['ID']}' title='View Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>
                                         <a href='updateInstructorDetails.php?instructor_id={$row['ID']}' title='Edit' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
                                         <a href='deleteInstructor.php?instructor_id={$row['ID']}' title='Delete' data-toggle='tooltip'><span class='glyphicon glyphicon-remove'></span></a>
                                     </td>
