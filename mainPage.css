@@ -1,0 +1,92 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.wrapper {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.page-header h2 {
+    color: #0a3d91;
+    border-bottom: 2px solid #0a3d91;
+    padding-bottom: 10px;
+}
+
+/* Section Cards */
+.section-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 30px;
+}
+
+/* Headings */
+.student-header h2,
+.instructor-header h2 {
+    color: #0a3d91;
+}
+
+.student-header,
+.instructor-header {
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.btn-info {
+    background-color: #0a3d91;
+    border-color: #0a3d91;
+    color: white;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+.btn-info:hover,
+.btn-success:hover {
+    opacity: 0.85;
+}
+
+.btn-margin {
+    margin: 10px 0;
+}
+
+/* Tables */
+.table {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.table thead {
+    background-color: #0a3d91;
+    color: white;
+}
+
+.table td, .table th {
+    vertical-align: middle !important;
+}
+
+td a {
+    margin-right: 10px;
+    color: #0a3d91;
+}
+
+td a:hover {
+    color: #064080;
+}
