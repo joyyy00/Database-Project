@@ -64,6 +64,9 @@ Student table
                         </ol>
                     </div>
                 
+                <!-- Class Statistics Button -->
+                <a href="classStats.php" class="btn btn-info" style="margin: 10px 0;">View Class Statistics</a>
+                
                 <!-- Student Database -->
                 <div class="student-header clearfix"> 
                     <h2 class="pull-left">Student Details</h2>
