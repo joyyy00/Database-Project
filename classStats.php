@@ -65,7 +65,8 @@ mysqli_close($link);
     <meta charset="UTF-8">
     <title>Class Statistics</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style>.wrapper { width: 600px; margin: 0 auto; }</style>
+    <!-- Link to style -->
+    <link rel="stylesheet" href="classStatsStyle.css">
 </head>
 <body>
 <div class="wrapper">

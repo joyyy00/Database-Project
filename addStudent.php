@@ -78,6 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Add New Student</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <!-- Link to Style -->
+    <link rel="stylesheet" href="addStudentInstructorStyle.css">
     <style type="text/css">
         .wrapper { width: 500px; margin: 0 auto; }
     </style>
