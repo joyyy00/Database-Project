@@ -1,23 +1,16 @@
 <?php
-session_start();
 require_once "config.php";
 
-// Check for student_id in the GET request
-if (isset($_GET["student_id"]) && !empty(trim($_GET["student_id"]))) {
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+    if (!isset($_GET["student_id"]) || empty(trim($_GET["student_id"]))) {
+        header("location: error.php");
+        exit();
+    }
     $SID = trim($_GET["student_id"]);
-    $_SESSION["SID"] = $SID;
-} elseif ($_SERVER["REQUEST_METHOD"] != "POST") {
-    // If no valid student_id in GET and not a POST request, redirect
-    header("location: error.php");
-    exit();
-}
+} elseif ($_SERVER["REQUEST_METHOD"] === "POST") {
+    if (isset($_POST["student_id"]) && !empty($_POST["student_id"])) {
+        $SID = $_POST["student_id"];
 
-// Delete the student's record after confirmation
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_SESSION["SID"]) && !empty($_SESSION["SID"])) {
-        $SID = $_SESSION["SID"];
-
-        // Prepare a delete statement
         $sql = "DELETE FROM Project_Student WHERE student_id = ?";
 
         if ($stmt = mysqli_prepare($link, $sql)) {
@@ -25,22 +18,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $param_SID = $SID;
 
             if (mysqli_stmt_execute($stmt)) {
-                // Successfully deleted
                 header("location: index.php");
                 exit();
             } else {
-                echo "Error deleting the student.";
+                echo "Error: Could not delete student.";
             }
 
             mysqli_stmt_close($stmt);
         }
+        mysqli_close($link);
+    } else {
+        echo "Invalid request.";
+        exit();
     }
-
-    mysqli_close($link);
 }
-
-// Make sure $SID is available for the HTML, even on POST
-$SID = $_SESSION["SID"] ?? null;
 ?>
 
 <!DOCTYPE html>
@@ -61,8 +52,8 @@ $SID = $_SESSION["SID"] ?? null;
                     </div>
                     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="alert alert-danger">
-							<input type="hidden" name="SID" value="<?php echo htmlspecialchars($SID); ?>"/>
-							<p>Are you sure you want to delete the record for Student ID: <strong><?php echo htmlspecialchars($SID); ?></strong>?</p><br>
+                            <input type="hidden" name="student_id" value="<?php echo htmlspecialchars($SID); ?>"/>
+                            <p>Are you sure you want to delete the record for Student ID: <strong><?php echo htmlspecialchars($SID); ?></strong>?</p><br>
                             <input type="submit" value="Yes" class="btn btn-danger">
                             <a href="index.php" class="btn btn-default">No</a>
                         </div>
