@@ -26,6 +26,7 @@ if ($stmt = mysqli_prepare($link, $sql_name)) {
     <meta charset="UTF-8">
     <title>Instructor Classes</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="css/viewInstructorSchedule.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
     <style>
@@ -46,7 +47,7 @@ if ($stmt = mysqli_prepare($link, $sql_name)) {
             <div class="col-md-12">
                 <div class="page-header clearfix">
                     <h2 class="pull-left">Classes Taught</h2>
-                    <a href="claimClass.php?instructor_id=<?php echo htmlspecialchars($instructor_id); ?>" class="btn btn-success pull-right">Claim New Class</a>
+                    <a href="claimClass.php?instructor_id=<?php echo htmlspecialchars($instructor_id); ?>" class="btn btn-success pull-right">Add New Class</a>
                 </div>
 
                 <h4>Class Schedule for <?php echo htmlspecialchars($fname . " " . $lname); ?> (ID: <?php echo htmlspecialchars($instructor_id); ?>)</h4><br>
