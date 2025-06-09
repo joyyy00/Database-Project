@@ -24,11 +24,15 @@ if ($stmt = mysqli_prepare($link, $sql_name)) {
 $sort_by = isset($_GET['sort_by']) ? $_GET['sort_by'] : 'due_date';
 $valid_sort_columns = ['due_date', 'class_name'];
 if (!in_array($sort_by, $valid_sort_columns)) {
-    $sort_by = 'due_date'; // Starts with due date
+    $sort_by = 'due_date'; // default to due date
 }
 
-// Alphabetically sort by class name
+// Set ORDER BY clause
 $order_by_clause = $sort_by === 'class_name' ? 'class_name, assignment_id' : $sort_by;
+
+// Determine button active class
+$due_date_class = ($sort_by === 'due_date') ? 'btn-active' : '';
+$class_name_class = ($sort_by === 'class_name') ? 'btn-active' : '';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,17 +43,6 @@ $order_by_clause = $sort_by === 'class_name' ? 'class_name, assignment_id' : $so
     <link rel="stylesheet" href="css/viewAssignments.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.js"></script>
-    <style>
-        .wrapper { width: 800px; margin: 0 auto; }
-        .page-header h2 { margin-top: 0; }
-        table tr td:last-child a { margin-right: 15px; }
-        .sort-buttons { margin-bottom: 20px; }
-    </style>
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();   
-        });
-    </script>
 </head>
 <body>
 <div class="wrapper">
@@ -58,8 +51,14 @@ $order_by_clause = $sort_by === 'class_name' ? 'class_name, assignment_id' : $so
             <div class="col-md-12">
                 <div class="page-header clearfix">
                     <h2 class="pull-left">Assignments</h2>
-                    <a href="viewAssignments.php?student_id=<?php echo htmlspecialchars($student_id); ?>&sort_by=due_date" class="btn btn-default pull-right" style="margin-left: 10px;">Sort by Due Date</a>
-                    <a href="viewAssignments.php?student_id=<?php echo htmlspecialchars($student_id); ?>&sort_by=class_name" class="btn btn-secondary pull-right">Sort by Class</a>
+                    <a href="viewAssignments.php?student_id=<?php echo htmlspecialchars($student_id); ?>&sort_by=due_date" 
+                       class="btn btn-success <?php echo $due_date_class; ?> pull-right" style="margin-left: 10px;">
+                        Sort by Due Date
+                    </a>
+                    <a href="viewAssignments.php?student_id=<?php echo htmlspecialchars($student_id); ?>&sort_by=class_name" 
+                       class="btn btn-success <?php echo $class_name_class; ?> pull-right">
+                        Sort by Class
+                    </a>
                 </div>
 
                 <h4>Assignments for <?php echo htmlspecialchars($fname . " " . $lname); ?> (SID: <?php echo htmlspecialchars($student_id); ?>)</h4><br>
@@ -115,8 +114,9 @@ mysqli_close($link);
 ?>
 <p><a href="index.php" class="btn btn-primary">Back</a></p>
 
-</div>
-</div>        
+            </div>
+        </div>        
+    </div>
 </div>
 </body>
 </html>
