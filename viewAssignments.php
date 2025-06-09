@@ -58,7 +58,7 @@ $order_by_clause = $sort_by === 'class_name' ? 'class_name, assignment_id' : $so
             <div class="col-md-12">
                 <div class="page-header clearfix">
                     <h2 class="pull-left">Assignments</h2>
-                    <a href="viewAssignments.php?student_id=<?php echo htmlspecialchars($student_id); ?>&sort_by=due_date" class="btn btn-secondary pull-right">Sort by Due Date</a>
+                    <a href="viewAssignments.php?student_id=<?php echo htmlspecialchars($student_id); ?>&sort_by=due_date" class="btn btn-default pull-right" style="margin-left: 10px;">Sort by Due Date</a>
                     <a href="viewAssignments.php?student_id=<?php echo htmlspecialchars($student_id); ?>&sort_by=class_name" class="btn btn-secondary pull-right">Sort by Class</a>
                 </div>
 
