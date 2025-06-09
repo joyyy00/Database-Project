@@ -40,7 +40,7 @@ Student table
     <div class="wrapper">
         <div class="container-fluid">
         <div class="page-header" style="display: flex; align-items: center; gap: 20px;">
-            <img src="images/logo.png" alt="Mini Canvas Logo" style="height: 60px;">
+            <!-- <img src="images/logo.png" alt="Mini Canvas Logo" style="height: 60px;"> -->
             <div class="header-text">
                 <h2>CS340 Project: Mini Canvas Database</h2>
                 <p>This project demonstrates CRUD operations:</p>
