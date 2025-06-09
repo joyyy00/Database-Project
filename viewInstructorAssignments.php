@@ -9,6 +9,18 @@ if (!isset($_GET["class_id"]) || empty(trim($_GET["class_id"]))) {
 $class_id = trim($_GET["class_id"]);
 $instructor_id = isset($_GET["instructor_id"]) ? trim($_GET["instructor_id"]) : null;
 
+// In case we dont get instructor_id
+if (!$instructor_id) {
+    $sql_get_instructor = "SELECT instructor_id FROM Project_Class WHERE class_id = ?";
+    if ($stmt = mysqli_prepare($link, $sql_get_instructor)) {
+        mysqli_stmt_bind_param($stmt, "i", $class_id);
+        mysqli_stmt_execute($stmt);
+        mysqli_stmt_bind_result($stmt, $instructor_id);
+        mysqli_stmt_fetch($stmt);
+        mysqli_stmt_close($stmt);
+    }
+}
+
 // Get class name
 $class_name = "";
 $sql_name = "SELECT class_name FROM Project_Class WHERE class_id = ?";
@@ -84,7 +96,7 @@ if ($stmt = mysqli_prepare($link, $sql)) {
                     title='Delete' data-toggle='tooltip' class='delete-icon' onclick=\"return confirm('Are you sure you want to delete this assignment?');\">
                         <span class='glyphicon glyphicon-remove'></span>
                     </a>
-                    <a href='editAssignment.php?assignment_id={$row['assignment_id']}' title='Edit' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a> 
+                    <a href='editAssignment.php?assignment_id={$row['assignment_id']}&class_id=$class_id&instructor_id=$instructor_id' title='Edit' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
                 </td>";
             echo "</tr>";
         }
