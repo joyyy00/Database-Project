@@ -82,7 +82,7 @@ mysqli_close($link);
             <input type="time" name="due_time" class="form-control" value="<?php echo htmlspecialchars($assignment['due_time']); ?>" required>
         </div>
         <div class="form-group">
-            <label>Notes</label>
+            <label>Assignment Details</label>
             <textarea name="notes" class="form-control" rows="4"><?php echo htmlspecialchars($assignment['notes']); ?></textarea>
         </div>
         <button type="submit" class="btn btn-success">Update Assignment</button>
