@@ -1,0 +1,101 @@
+/* addAssignments.css */
+
+/* General styles */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* Centered content wrapper */
+.wrapper {
+    width: 90%;
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 25px 30px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+/* Page title */
+h2 {
+    color: #0a3d91;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Paragraph description */
+p {
+    margin-bottom: 25px;
+}
+
+/* Form styling */
+.form-group label {
+    font-weight: 500;
+    color: #0a3d91;
+}
+
+.form-control {
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 14px;
+    width: 100%;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+/* Error highlighting */
+.has-error .form-control {
+    border-color: #d9534f;
+}
+
+.help-block {
+    color: #d9534f;
+    font-size: 13px;
+}
+
+/* table */
+.table {
+    border-radius: 8px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #0a3d91;
+    border-color: #0a3d91;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #082f73;
+    border-color: #082f73;
+}
+
+.btn-default {
+    background-color: #e6f0ff;
+    color: #0a3d91;
+    border: 1px solid #b3d1ff;
+    padding: 8px 16px;
+    border-radius: 6px;
+    margin-left: 10px;
+}
+
+.btn-default:hover {
+    background-color: #d0e0ff;
+    color: #082f73;
+    border-color: #a0c4ff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 15px;
+    }
+}

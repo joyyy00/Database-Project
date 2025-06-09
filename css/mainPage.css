@@ -96,3 +96,7 @@ td a {
 td a:hover {
     color: #064080;
 }
+
+.table tbody tr:hover {
+    background-color: #d7d9e2;
+}

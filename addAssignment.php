@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($stmt = mysqli_prepare($link, $sql)) {
             mysqli_stmt_bind_param($stmt, "isss", $class_id, $notes, $due_date, $due_time);
             if (mysqli_stmt_execute($stmt)) {
-                header("Location: viewAssignmentsInstructor.php?class_id=$class_id" . ($instructor_id ? "&instructor_id=$instructor_id" : ""));
+                header("Location: viewInstructorAssignments.php?class_id=$class_id" . ($instructor_id ? "&instructor_id=$instructor_id" : ""));
                 exit();
             } else {
                 echo "<p>Error inserting assignment: " . mysqli_error($link) . "</p>";
@@ -48,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Add Assignment</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="css/addAssignments.css">
     <style>.wrapper { width: 600px; margin: 0 auto; }</style>
 </head>
 <body>
@@ -70,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span class="help-block"><?php echo $due_time_err; ?></span>
         </div>
         <input type="submit" class="btn btn-primary" value="Add Assignment">
-        <a href="viewAssignmentsInstructor.php?class_id=<?php echo $class_id . ($instructor_id ? "&instructor_id=$instructor_id" : ""); ?>" class="btn btn-default">Cancel</a>
+        <a href="viewInstructorAssignments.php?class_id=<?php echo $class_id . ($instructor_id ? "&instructor_id=$instructor_id" : ""); ?>" class="btn btn-default">Cancel</a>
     </form>
 </div>
 </body>
