@@ -38,6 +38,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     mysqli_close($link);
 }
+
+// Make sure $SID is available for the HTML, even on POST
+$SID = $_SESSION["SID"] ?? null;
 ?>
 
 <!DOCTYPE html>
