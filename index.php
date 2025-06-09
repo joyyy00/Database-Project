@@ -54,7 +54,7 @@ Student table
             </div>
 
             <!-- Class Statistics Button -->
-            <a href="classStats.php" class="btn btn-info btn-margin">View Class Statistics</a>
+            <a href="classStats.php" class="btn btn-classStats btn-margin" style="background-color: #28a745; border-color: #28a745; color: white;">View Class Statistics</a>
 
             <!-- Student Database -->
             <div class="section-card">

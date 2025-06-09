@@ -47,7 +47,8 @@ if ($stmt = mysqli_prepare($link, $sql_name)) {
             <div class="col-md-12">
                 <div class="page-header clearfix">
                     <h2 class="pull-left">Classes Taught</h2>
-                    <a href="addInstructorClass.php?instructor_id=<?php echo htmlspecialchars($instructor_id); ?>" class="btn btn-success pull-right">Add New Class</a>
+                    <a href="addInstructorClass.php?instructor_id=<?php echo htmlspecialchars($instructor_id); ?>" class="btn btn-success pull-right">Add Class</a>
+                    <a href="dropInstructorClass.php?instructor_id=<?php echo htmlspecialchars($instructor_id); ?>" class="btn btn-drop pull-right">Drop Class</a>
                 </div>
 
                 <h4>Class Schedule for <?php echo htmlspecialchars($fname . " " . $lname); ?> (ID: <?php echo htmlspecialchars($instructor_id); ?>)</h4><br>

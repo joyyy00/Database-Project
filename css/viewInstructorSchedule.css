@@ -19,6 +19,10 @@
     color: #004080;
 }
 
+.page-header .btn {
+    margin-left: 10px;
+}
+
 /* Table styling */
 table.table {
     width: 100%;
@@ -42,14 +46,20 @@ table.table {
 
 /* Buttons */
 .btn-success {
-    background-color: #0a3d91;
-    border-color: #0a3d91;
+    background-color: #28a745;
+    border-color: #28a745;
     color: #fff;
 }
 
+.btn.btn-drop {
+    background-color: #ed5c5c !important;
+    border-color: #ed5c5c !important;
+    color: #fff !important;
+}
+
 .btn-success:hover {
-    background-color: #082f73;
-    border-color: #0a3d91;
+    background-color: #218838;
+    border-color: #218838;
 }
 
 .btn-primary {

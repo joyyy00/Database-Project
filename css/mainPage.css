@@ -56,19 +56,13 @@ body {
     transition: 0.3s ease;
 }
 
-.btn-info {
-    background-color: #0a3d91;
-    border-color: #0a3d91;
-    color: white;
-}
-
 .btn-success {
     background-color: #28a745;
     border-color: #28a745;
     color: white;
 }
 
-.btn-info:hover,
+.btn-classStats:hover,
 .btn-success:hover {
     opacity: 0.85;
 }
