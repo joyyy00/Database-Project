@@ -1,0 +1,76 @@
+/* dropClasses.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper {
+    width: 800px;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.page-header {
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 20px;
+}
+
+.page-header h2 {
+    margin-top: 0;
+}
+
+.btn-primary {
+    float: right;
+}
+
+.alert {
+    margin-top: 15px;
+}
+
+/* Table styles */
+.table {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: #0a3d91;
+    color: #ffffff;
+}
+
+.table thead th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+form button {
+    margin: 0;
+}
+
+/* Button */
+.btn-success {
+    background-color: #0a3d91;
+    border-color: #0a3d91;
+}
+
+.btn-success:hover {
+    background-color: #082f73;
+    border-color: #082f73;
+}

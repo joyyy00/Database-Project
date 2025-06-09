@@ -1,0 +1,101 @@
+/* addClass.css */
+
+/* General page styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* Wrapper for centered content */
+.wrapper {
+    width: 90%;
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+}
+
+/* Page header */
+.page-header {
+    border-bottom: 2px solid #0a3d91;
+    margin-bottom: 30px;
+}
+
+.page-header h2 {
+    color: #0a3d91;
+    font-weight: 600;
+}
+
+/* Back button */
+.page-header .btn {
+    background-color: #0a3d91;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+}
+
+.page-header .btn:hover {
+    background-color: #082f73;
+}
+
+/* Success alert */
+.alert-success {
+    background-color: #e6f0ff;
+    color: #0a3d91;
+    border: 1px solid #b3d1ff;
+    border-radius: 6px;
+    padding: 10px 15px;
+}
+
+/* Table styles */
+.table {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table thead {
+    background-color: #0a3d91;
+    color: #ffffff;
+}
+
+.table thead th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table tbody td {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+.btn-success {
+    background-color: #0a3d91;
+    border-color: #0a3d91;
+}
+
+.btn-success:hover {
+    background-color: #082f73;
+    border-color: #082f73;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+    .wrapper {
+        padding: 10px;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
