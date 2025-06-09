@@ -21,6 +21,22 @@ h4 {
     margin-bottom: 20px;
 }
 
+.page-header .btn-success {
+    float: right;
+    background-color: #0a3d91;
+    border: none;
+    color: #fff;
+    font-weight: 500;
+    padding: 8px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    line-height: 1.5;
+}
+
+.page-header .btn-success:hover {
+    background-color: #082f73;
+}
+
 /* Table styles */
 .table {
     width: 100%;
@@ -54,6 +70,11 @@ h4 {
 .btn-primary:hover {
     background-color: #072d6f;
     border-color: #072d6f;
+}
+
+.btn-active {
+    background-color: #082f73 !important;
+    color: #fff !important;
 }
 
 /* Message style */
