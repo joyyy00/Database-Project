@@ -21,6 +21,7 @@ body {
 /* Heading */
 h2 {
     font-family: 'Segoe UI', sans-serif;
+    font-size: 28px;
     color: #0a3d91;
     border-bottom: 2px solid #0a3d91;
     padding-bottom: 10px;
@@ -82,12 +83,16 @@ textarea.form-control {
     border-color: #1e7e34;
 }
 
-/* Alerts */
-.alert-danger {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+.btn-blue {
+    background-color: #0a3d91;
+    border: 1px solid #0a3d91;
+    color: white;
     border-radius: 8px;
-    padding: 10px 15px;
-    margin-bottom: 20px;
+    margin-right: 3px;
+}
+
+.btn-blue:hover {
+    background-color: #08357c;
+    border-color: #08357c;
+    color: white; 
 }

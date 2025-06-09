@@ -60,8 +60,8 @@ mysqli_close($link);
 <head>
     <meta charset="UTF-8">
     <title>Edit Assignment</title>
-    <link rel="stylesheet" href="css/editAssignment.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="css/editAssignment.css">
 </head>
 <body>
 <div class="wrapper">
@@ -85,7 +85,7 @@ mysqli_close($link);
             <label>Assignment Details</label>
             <textarea name="notes" class="form-control" rows="4"><?php echo htmlspecialchars($assignment['notes']); ?></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Update Assignment</button>
+        <button type="submit" class="btn btn-blue">Update Assignment</button>
         <a href="viewInstructorAssignments.php?class_id=<?php echo htmlspecialchars($class_id); ?>&instructor_id=<?php echo htmlspecialchars($instructor_id); ?>" class="btn btn-default">Cancel</a>
     </form>
 </div>
