@@ -88,13 +88,21 @@ h4 {
 
 /* Action icon */
 .table tbody td a {
-    color: #d9534f;
+    color: #0a3d91;
     font-size: 18px;
     margin-right: 15px;
     text-decoration: none;
 }
 
 .table tbody td a:hover {
+    color: #082f73;
+}
+
+.table tbody td a.delete-icon {
+    color: #d9534f;
+}
+
+.table tbody td a.delete-icon:hover {
     color: #b52b27;
 }
 

@@ -87,7 +87,7 @@ Student table
                                         <a href='viewSchedule.php?student_id={$row['SID']}' title='View Schedule' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>
                                         <a href='viewAssignments.php?student_id={$row['SID']}' title='View Assignments' data-toggle='tooltip'><span class='glyphicon glyphicon-book'></span></a>
                                         <a href='updateStudentDetails.php?student_id={$row['SID']}' title='Edit' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
-                                        <a href='deleteStudent.php?student_id={$row['SID']}' title='Delete' data-toggle='tooltip'><span class='glyphicon glyphicon-remove'></span></a>
+                                        <a href='deleteStudent.php?student_id={$row['SID']}' title='Delete' data-toggle='tooltip' class='delete'><span class='glyphicon glyphicon-remove'></span></a>
                                     </td>
                                   </tr>";
                         }
@@ -130,7 +130,7 @@ Student table
                                     <td>
                                         <a href='viewInstructorSchedule.php?instructor_id={$row['ID']}' title='View Classes' data-toggle='tooltip'><span class='glyphicon glyphicon-th-list'></span></a>
                                         <a href='updateInstructorDetails.php?instructor_id={$row['ID']}' title='Edit' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a>
-                                        <a href='deleteInstructor.php?instructor_id={$row['ID']}' title='Delete' data-toggle='tooltip'><span class='glyphicon glyphicon-remove'></span></a>
+                                        <a href='deleteInstructor.php?instructor_id={$row['ID']}' title='Delete' data-toggle='tooltip' class='delete'><span class='glyphicon glyphicon-remove'></span></a>
                                     </td>
                                   </tr>";
                         }

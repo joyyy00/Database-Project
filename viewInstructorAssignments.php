@@ -81,9 +81,10 @@ if ($stmt = mysqli_prepare($link, $sql)) {
             echo "<td>" . htmlspecialchars($row["notes"]) . "</td>";
             echo "<td>
                     <a href='deleteAssignment.php?assignment_id=" . $row["assignment_id"] . "&class_id=$class_id" . ($instructor_id ? "&instructor_id=$instructor_id" : "") . "' 
-                    title='Delete' data-toggle='tooltip' onclick=\"return confirm('Are you sure you want to delete this assignment?');\">
+                    title='Delete' data-toggle='tooltip' class='delete-icon' onclick=\"return confirm('Are you sure you want to delete this assignment?');\">
                         <span class='glyphicon glyphicon-remove'></span>
                     </a>
+                    <a href='editAssignment.php?assignment_id={$row['assignment_id']}' title='Edit' data-toggle='tooltip'><span class='glyphicon glyphicon-pencil'></span></a> 
                 </td>";
             echo "</tr>";
         }

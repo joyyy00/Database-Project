@@ -64,7 +64,7 @@ body {
 
 .btn-classStats:hover,
 .btn-success:hover {
-    opacity: 0.85;
+    opacity: 0.75;
 }
 
 .btn-margin {
@@ -94,7 +94,15 @@ td a {
 }
 
 td a:hover {
-    color: #064080;
+    color: #082f73;
+}
+
+td a.delete span{
+    color: #d9534f !important;
+}
+
+td a.delete:hover span{
+    color: #b52b27 !important;
 }
 
 .table tbody tr:hover {
