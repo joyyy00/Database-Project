@@ -54,7 +54,7 @@ if ($stmt = mysqli_prepare($link, $sql_name)) {
             <div class="col-md-12">
                 <div class="page-header clearfix">
                     <h2 class="pull-left">Assignments for Class</h2>
-                    <a href="addAssignment.php?class_id=<?php echo htmlspecialchars($class_id); ?>" class="btn btn-success pull-right">Add Assignment</a>
+                    <a href="addAssignment.php?class_id=<?php echo $class_id; ?>&instructor_id=<?php echo $instructor_id; ?>&from=<?php echo urlencode($_SERVER['REQUEST_URI']); ?>" class="btn btn-success">Add Assignment</a>
                 </div>
 
                 <h4>Class: <?php echo htmlspecialchars($class_name); ?> (Class ID: <?php echo htmlspecialchars($class_id); ?>)</h4><br>

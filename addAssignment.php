@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <span class="help-block"><?php echo $due_time_err; ?></span>
         </div>
         <input type="submit" class="btn btn-primary" value="Add Assignment">
-        <a href="viewInstructorAssignments.php?class_id=<?php echo $class_id . ($instructor_id ? "&instructor_id=$instructor_id" : ""); ?>" class="btn btn-default">Cancel</a>
+        <a href="<?php echo isset($_GET['from']) ? htmlspecialchars($_GET['from']) : "viewInstructorAssignments.php?class_id=$class_id" . ($instructor_id ? "&instructor_id=$instructor_id" : ""); ?>" class="btn btn-default">Cancel</a>
     </form>
 </div>
 </body>

@@ -98,7 +98,7 @@ if ($stmt = mysqli_prepare($link, $sql)) {
             echo "<td>" . htmlspecialchars($row["time"]) . "</td>";
             echo "<td>" . htmlspecialchars($row["location"]) . "</td>";
             echo "<td>
-                    <a href='viewInstructorAssignments.php?class_id=" . $row["class_id"] . "&instructor_id=" . $instructor_id . "' title='View/Add Assignments' data-toggle='tooltip'>
+                    <a href='viewInstructorAssignments.php?class_id=" . $row["class_id"] . "&instructor_id=" . $instructor_id . "&from=viewInstructorSchedule.php?instructor_id=" . $instructor_id . "' title='View/Add Assignments' data-toggle='tooltip'>
                         <span class='glyphicon glyphicon-book'></span>
                     </a>
                   </td>";
