@@ -39,19 +39,19 @@ Student table
 
     <div class="wrapper">
         <div class="container-fluid">
-            <div class="page-header">
-                <!-- <img src = "logo.png" alt="Mini Canvas Logo" class="logo-img"> -->
-                <div class="header-text">
-                    <h2>CS340 Project: Mini Canvas Database</h2>
-                    <p>This project demonstrates CRUD operations:</p>
-                    <ol>
-                        <li>CREATE students, instructors, assignments, and classes</li>
-                        <li>RETRIEVE class & assignment info for students and instructors</li>
-                        <li>UPDATE student and instructor records</li>
-                        <li>DELETE student and instructor records</li>
-                    </ol>
-                </div>
+        <div class="page-header" style="display: flex; align-items: center; gap: 20px;">
+            <img src="images/logo.png" alt="Mini Canvas Logo" style="height: 60px;">
+            <div class="header-text">
+                <h2>CS340 Project: Mini Canvas Database</h2>
+                <p>This project demonstrates CRUD operations:</p>
+                <ol>
+                    <li>CREATE students, instructors, assignments, and classes</li>
+                    <li>RETRIEVE class & assignment info for students and instructors</li>
+                    <li>UPDATE student and instructor records</li>
+                    <li>DELETE student and instructor records</li>
+                </ol>
             </div>
+        </div>
 
             <!-- Class Statistics Button -->
             <a href="classStats.php" class="btn btn-classStats btn-margin" style="background-color: #28a745; border-color: #28a745; color: white;">View Class Statistics</a>
