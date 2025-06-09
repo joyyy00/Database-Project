@@ -19,7 +19,6 @@
     color: #004080;
 }
 
-/* Table styles */
 /* Table styling */
 table.table {
     width: 100%;
@@ -43,25 +42,25 @@ table.table {
 
 /* Buttons */
 .btn-success {
-    background-color: #0073e6;
-    border-color: #005bb5;
+    background-color: #0a3d91;
+    border-color: #0a3d91;
     color: #fff;
 }
 
 .btn-success:hover {
-    background-color: #005bb5;
-    border-color: #004080;
+    background-color: #082f73;
+    border-color: #0a3d91;
 }
 
 .btn-primary {
-    background-color: #004080;
-    border-color: #002b55;
+    background-color: #0a3d91;
+    border-color: #0a3d91;
     color: #fff;
 }
 
 .btn-primary:hover {
-    background-color: #002b55;
-    border-color: #001f3f;
+    background-color: #082f73;
+    border-color: #0a3d91;
 }
 
 /* Tooltip icon links */
