@@ -1,10 +1,3 @@
-<!-- 
-TODO
-- Change format of choosing class statistic options
-- Create individual files for options 
-  Currently options are coded in this files
--->
-
 <?php
 require_once "config.php";
 
@@ -52,6 +45,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $resultText .= "<h4>Total Students:</h4><p><strong>$total</strong></p>";
                 mysqli_stmt_close($stmt);
             }
+        } elseif ($stat_type === "total_assignments") {
+            $sql = "SELECT COUNT(a.assignment_id) AS total
+                FROM Project_Assignment AS a
+                WHERE a.class_id = ?";
+            if ($stmt = mysqli_prepare($link, $sql)) {
+            mysqli_stmt_bind_param($stmt, "i", $class_id);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_bind_result($stmt, $total);
+            mysqli_stmt_fetch($stmt);
+            $resultText .= "<h4>Total Assignments:</h4><p><strong>$total</strong></p>";
+            mysqli_stmt_close($stmt);
+            }     
         }
     }
 }
@@ -90,6 +95,7 @@ mysqli_close($link);
                 <option value="">--Choose Type--</option>
                 <option value="list_students">List Students</option>
                 <option value="count_students">Count Students</option>
+                <option value="total_assignments">Total Assignments</option>
             </select>
         </div>
 
