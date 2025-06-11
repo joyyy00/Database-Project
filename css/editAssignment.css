@@ -1,4 +1,4 @@
-/* General Page Styling */
+/* General styles */
 body {
     font-family: 'Segoe UI', sans-serif;
     background-color: #f4f6f9;
@@ -7,7 +7,6 @@ body {
     padding: 0;
 }
 
-/* Wrapper */
 .wrapper {
     width: 90%;
     max-width: 600px;
@@ -29,7 +28,7 @@ h2 {
     font-weight: 600;
 }
 
-/* Form Labels */
+/* Form */
 label {
     color: #0a3d91;
     font-weight: 600;
@@ -37,7 +36,6 @@ label {
     display: block;
 }
 
-/* Form Controls */
 .form-control {
     border-radius: 8px;
     padding: 8px 12px;

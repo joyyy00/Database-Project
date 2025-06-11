@@ -1,4 +1,4 @@
-/* General Styling */
+/* General styles */
 body {
     font-family: 'Segoe UI', sans-serif;
     background-color: #f4f6f9;
@@ -6,7 +6,6 @@ body {
     padding: 30px 0;
 }
 
-/* Centered Form Container */
 .wrapper {
     width: 90%;
     max-width: 600px;
@@ -17,7 +16,7 @@ body {
     padding: 30px;
 }
 
-/* Headings */
+/* Heading */
 .page-header h2 {
     color: #0a3d91;
     border-bottom: 2px solid #0a3d91;
@@ -25,13 +24,12 @@ body {
     margin-bottom: 20px;
 }
 
-/* Form Labels */
+/* Form */
 label {
     color: #0a3d91;
     font-weight: 600;
 }
 
-/* Form Fields */
 .form-control {
     border-radius: 8px;
     padding: 8px 12px;

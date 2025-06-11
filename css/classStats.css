@@ -17,6 +17,7 @@ body {
     padding: 30px;
 }
 
+/* Header */
 h2 {
     color: #0a3d91;
     border-bottom: 2px solid #0a3d91;
@@ -24,6 +25,7 @@ h2 {
     margin-bottom: 20px;
 }
 
+/* Form */
 .form-group label {
     font-weight: bold;
     color: #0a3d91;
@@ -45,6 +47,7 @@ input[type="submit"].btn-primary:hover {
     opacity: 0.85;
 }
 
+/* Button */
 .btn-default {
     border-radius: 8px;
 }

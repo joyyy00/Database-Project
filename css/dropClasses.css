@@ -1,5 +1,4 @@
-/* dropClasses.css */
-
+/* General style */
 body {
     font-family: 'Segoe UI', sans-serif;
     background-color: #f8f9fa;
@@ -49,7 +48,7 @@ body {
     margin-top: 15px;
 }
 
-/* Table styles */
+/* Table */
 .table {
     background-color: #ffffff;
     border: 1px solid #ddd;

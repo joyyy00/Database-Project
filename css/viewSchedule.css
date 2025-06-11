@@ -1,6 +1,4 @@
-/* viewSchedule.css */
-
-/* Main wrapper */
+/* General style */
 .wrapper {
     font-family: 'Segoe UI', sans-serif;  
     width: 800px;
@@ -25,7 +23,7 @@ h4 {
     margin-left: 10px;
 }
 
-/* Table styling */
+/* Table */
 .table{
     border-radius: 8px;
 }
