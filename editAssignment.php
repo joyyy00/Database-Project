@@ -1,7 +1,11 @@
+<!-- 
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
+-->
+
 <?php
 require_once "config.php";
 
-// Get , instructor_id, assignment_id from the query string
 $instructor_id = $_GET['instructor_id'] ?? null;
 $assignment_id = $_GET['assignment_id'] ?? null;
 
@@ -9,7 +13,6 @@ if (!$assignment_id) {
     die("Invalid request. Assignment ID is required.");
 }
 
-// Initialize variables
 $assignment = [];
 $class_id = null;
 $success_msg = $error_msg = "";
@@ -33,7 +36,6 @@ if ($stmt = mysqli_prepare($link, $sql_fetch)) {
     mysqli_stmt_close($stmt);
 }
 
-// Handle form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $due_date = $_POST['due_date'];
     $due_time = $_POST['due_time'];

@@ -1,8 +1,6 @@
 <!-- 
-TODO:
-- add class 
-- add drop class 
-
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
 -->
 
 <?php

@@ -1,3 +1,8 @@
+<!-- 
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
+-->
+
 <?php
 require_once "config.php";
 

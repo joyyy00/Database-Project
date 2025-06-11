@@ -1,3 +1,8 @@
+<!-- 
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
+-->
+
 <?php
 require_once "config.php";
 
@@ -21,7 +26,6 @@ if ($stmt_name = mysqli_prepare($link, $sql_name)) {
     mysqli_stmt_close($stmt_name);
 }
 
-// Handle drop action
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['class_id'])) {
     $class_id = $_POST['class_id'];
 

@@ -1,3 +1,8 @@
+<!-- 
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
+-->
+
 <?php
 require_once "config.php";
 
@@ -20,6 +25,7 @@ if ($stmt = mysqli_prepare($link, $sql_name)) {
     mysqli_stmt_close($stmt);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +54,7 @@ if ($stmt = mysqli_prepare($link, $sql_name)) {
                 <div class="page-header clearfix">
                     <h2 class="pull-left">Classes Taught</h2>
                     <a href="addInstructorClass.php?instructor_id=<?php echo htmlspecialchars($instructor_id); ?>" class="btn btn-success pull-right">Replace Class Instructor</a>
-                    <!-- Currently drop class is unavailable because of foreign key constraints -->
+                    <!-- Currently drop class is unavailable -->
                     <!-- <a href="dropInstructorClass.php?instructor_id=<?php echo htmlspecialchars($instructor_id); ?>" class="btn btn-drop pull-right">Drop Class</a> -->
                 </div>
 

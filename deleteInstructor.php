@@ -1,7 +1,11 @@
+<!-- 
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
+-->
+
 <?php
 require_once "config.php";
 
-// Step 1: Validate GET or POST request
 if ($_SERVER["REQUEST_METHOD"] === "GET") {
     if (!isset($_GET["instructor_id"]) || empty(trim($_GET["instructor_id"]))) {
         header("location: error.php");

@@ -1,3 +1,8 @@
+<!-- 
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
+-->
+
 <?php
     session_start();	
     // Include config file

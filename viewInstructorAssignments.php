@@ -1,3 +1,8 @@
+<!-- 
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
+-->
+
 <?php
 require_once "config.php";
 
@@ -32,6 +37,7 @@ if ($stmt = mysqli_prepare($link, $sql_name)) {
     mysqli_stmt_close($stmt);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

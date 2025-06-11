@@ -1,3 +1,8 @@
+<!-- 
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
+-->
+
 <?php
 require_once "config.php";
 
@@ -10,7 +15,6 @@ if ($result = mysqli_query($link, $sql)) {
     }
 }
 
-// Handle form submission
 $resultText = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $class_id = $_POST["class_id"] ?? "";
@@ -70,7 +74,6 @@ mysqli_close($link);
     <meta charset="UTF-8">
     <title>Class Statistics</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <!-- Link to style -->
     <link rel="stylesheet" href="css/classStats.css">
 </head>
 <body>

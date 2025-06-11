@@ -1,11 +1,13 @@
+<!-- 
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
+-->
+
 <?php
-// Include config file
 require_once "config.php";
 
-// Get the student_id from the query string
 $student_id = $_GET['student_id'] ?? null;
 
-// Check if student_id is provided
 if (!$student_id) {
     die("Invalid request. Student ID is required.");
 }
@@ -27,23 +29,20 @@ if ($stmt_name = mysqli_prepare($link, $sql_name)) {
     mysqli_stmt_close($stmt_name);
 }
 
-// Process form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['class_id'])) {
     $class_id = $_POST['class_id'];
 
-    // Prepare a delete statement
+    // DELETE sql
     $sql = "DELETE FROM Project_Attends WHERE student_id = ? AND class_id = ?";
 
     if ($stmt = mysqli_prepare($link, $sql)) {
         mysqli_stmt_bind_param($stmt, "ii", $param_student_id, $param_class_id);
 
-        // Set parameters
         $param_student_id = $student_id;
         $param_class_id = $class_id;
 
         // Attempt to execute the statement
         if (mysqli_stmt_execute($stmt)) {
-            // Redirect back to the same page with a success message
             header("Location: dropClasses.php?student_id=$student_id&message=Class dropped successfully");
             exit();
         } else {

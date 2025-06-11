@@ -1,3 +1,8 @@
+<!-- 
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
+-->
+
 <?php
 require_once "config.php";
 
@@ -33,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['class_id'])) {
     }
 }
 
-// Fetch classes not assigned to this instructor
+// fetch classes not assigned to this instructor
 $sql = "
     SELECT 
         c.class_id, c.class_name, c.start_date, c.end_date, c.time, c.location,

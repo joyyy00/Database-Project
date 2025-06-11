@@ -1,7 +1,6 @@
 <!-- 
-TODO:
-- number of classes function to automatically calculate
-- number_of_classes is set to 0 for new students for now
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
 -->
 
 <?php
@@ -78,7 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Add New Student</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <!-- Link to Style -->
     <link rel="stylesheet" href="css/addStudentInstructor.css">
     <style type="text/css">
         .wrapper { width: 500px; margin: 0 auto; }

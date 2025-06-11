@@ -1,3 +1,8 @@
+<!-- 
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
+-->
+
 <?php
 require_once "config.php";
 
@@ -27,13 +32,14 @@ if (!in_array($sort_by, $valid_sort_columns)) {
     $sort_by = 'due_date'; // default to due date
 }
 
-// Set ORDER BY clause
+// Order by 
 $order_by_clause = $sort_by === 'class_name' ? 'class_name, assignment_id' : $sort_by;
 
-// Determine button active class
+// Buttons for sorting
 $due_date_class = ($sort_by === 'due_date') ? 'btn-active' : '';
 $class_name_class = ($sort_by === 'class_name') ? 'btn-active' : '';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

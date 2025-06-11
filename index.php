@@ -1,15 +1,10 @@
 <!-- 
-TODO:
-- make css files for other files like class statistics, add forms, etc.
-
-Student table
-- Moved drop classes to viewSchedule
+Group: 20
+Members: Xavier Ashkar, Joy Lim, Kevin Tran 
 -->
-
 
 <?php
 	session_start();
-	//$currentpage="View Students & Instructors"; 
 ?>
 
 <!DOCTYPE html>
